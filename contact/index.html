@@ -63,19 +63,25 @@ body.custom-background { background-color: #ffffff; }
 jQuery('#form1').submit(function() {
 jQuery.ajax({
   type: 'POST',
-  url: 'https://s.trustmatta.com/pw/mail.php',
-  data: {
+  url: 'https://znoug2xm01.execute-api.eu-west-1.amazonaws.com/prod/contact_form_handler',
+  data: JSON.stringify({
       'from': jQuery('#form-main').find('input[name="email"]').val(),
-      'to': '360-webform@trustmatta.com',
       'subject': 'Message from '+jQuery('#form-main').find('input[name="name"]').val(),
       'text': jQuery('#form-main').find('textarea[name="text"]').val(),
-  }
- }).done(function(response) {
- alert('Message Sent! Our team will be in touch shortly.');
-});
+      'source': window.location.href,
+  }),
+    success: function (data) {
+      // clear form and show a success message
+	alert(data);
+    },
+    error: function (data) {
+      // show an error message
+	console.log("error"+data);
+    }
+ });
 return false;
 });
-// ]]&gt;</script></p>
+// ]]></script>
 </div>
 </div>
 </div></article></main></div></div></div><div class="footer-widgets"><div class="wrap"><div class="footer-widgets-1 widget-area"><section id="nav_menu-6" class="widget widget_nav_menu"><div class="widget-wrap"><div class="menu-footer-menu-1-container"><ul id="menu-footer-menu-1" class="menu"><li id="menu-item-238" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-202 current_page_item menu-item-238"><a href="http://www.matta360.com/contact/">Contact</a></li>
